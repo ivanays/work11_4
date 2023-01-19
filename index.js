@@ -123,3 +123,34 @@ const Comment = sequelize.define(
         timestamps: false
     }
 );
+
+// ; (async () => {
+//     try {
+//         await User.sync({
+//             alter: true,
+//             force: false
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+// ; (async () => {
+//     try {
+//         await Post.sync({
+//             alter: true,
+//             force: false
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+// ; (async () => {
+//     try {
+//         await Comment.sync({
+//             alter: true,
+//             force: false
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
