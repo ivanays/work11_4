@@ -1,9 +1,14 @@
+// 1 Разработать Sequelize-модели базы данных по предметной области. В качестве предметной области предлагается взять БД “Социальная сеть” из предыдущих уроков (или ее отдельная часть), либо придумать что-то свое
+
 const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = new Sequelize("social_network", 'root', "", {
     host: "localhost",
     dialect: "mysql",
 });
+
+
+// 2 Разработать 2-3 модели с использованием Sequelize, прописать атрибуты и их типы данных. Инициализировать модели, настроить синхронизацию с БД
 
 const User = sequelize.define(
     "User",
@@ -154,3 +159,24 @@ const Comment = sequelize.define(
 //         console.error(error);
 //     }
 // })();
+
+// 3 Разработать функции для
+//     a) получения списка из таблицы(findAll)
+//     b) получения элемента по идентификатору (findByPk)
+//     c) получения списка элементов с условием (findAll с where)
+//     d) добавления элемента
+//     e) удаления элемента
+//     f) редактирования элемен
+
+; (async () => {
+    try {
+        await User.sync({
+            alter: true,
+            force: false
+        });
+
+        
+    } catch (error) {
+        console.error(error);
+    }
+})();
