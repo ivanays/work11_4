@@ -50,7 +50,7 @@ const User = sequelize.define(
             allowNull: true,
             defaultValue: null,
         },
-        sity: {
+        city: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: null,
@@ -62,8 +62,18 @@ const User = sequelize.define(
         },
         balance: {
             type: DataTypes.FLOAT,
-            allowNull: true,
+            allowNull: false,
             defaultValue: 0,
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+        updated_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
     },
     {
@@ -91,6 +101,16 @@ const Post = sequelize.define(
         author_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+        updated_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
     },
     {
@@ -120,6 +140,16 @@ const Comment = sequelize.define(
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+        updated_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
     },
     {
@@ -171,23 +201,23 @@ const Comment = sequelize.define(
 // 3 Разработать функции для
 
 //     a) получения списка из таблицы(findAll)
-// ; (async () => {
-//     try {
-//         await User.sync({
-//             alter: true,
-//             force: false
-//         });
-//         const users = await User.findAll();
-//            if (users === null) {
-//             console.log("Not found!");
-//         } else {
-//             console.log(users instanceof User);
-//             console.log(users);
-//         }
-//     } catch (error) {
-//         console.error(error);
-//     }
-// })();
+; (async () => {
+    try {
+        await User.sync({
+            alter: true,
+            force: false
+        });
+        const users = await User.findAll();
+           if (users === null) {
+            console.log("Not found!");
+        } else {
+            console.log(users instanceof User);
+            console.log(users);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+})();
 
 //     b) получения элемента по идентификатору (findByPk)
 // ; (async () => {
