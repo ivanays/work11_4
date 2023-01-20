@@ -1,12 +1,11 @@
 // 1 Разработать Sequelize-модели базы данных по предметной области. В качестве предметной области предлагается взять БД “Социальная сеть” из предыдущих уроков (или ее отдельная часть), либо придумать что-то свое
 
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, Op } = require("sequelize");
 
-const sequelize = new Sequelize("social_network", 'root', "", {
+const sequelize = new Sequelize("social_network", "root", "", {
     host: "localhost",
     dialect: "mysql",
 });
-
 
 // 2 Разработать 2-3 модели с использованием Sequelize, прописать атрибуты и их типы данных. Инициализировать модели, настроить синхронизацию с БД
 
@@ -69,7 +68,7 @@ const User = sequelize.define(
     },
     {
         tableName: "users",
-        timestamps: false
+        timestamps: false,
     }
 );
 const Post = sequelize.define(
@@ -96,7 +95,7 @@ const Post = sequelize.define(
     },
     {
         tableName: "posts",
-        timestamps: false
+        timestamps: false,
     }
 );
 const Comment = sequelize.define(
@@ -125,18 +124,18 @@ const Comment = sequelize.define(
     },
     {
         tableName: "comments",
-        timestamps: false
+        timestamps: false,
     }
 );
 
-; (async () => {
-    try {
-        await sequelize.authenticate();
-        console.log("Connection has been established successfully.");
-    } catch (error) {
-        console.error("Unable to connect to the database:", error);
-    }
-})();
+// (async () => {
+//     try {
+//         await sequelize.authenticate();
+//         console.log("Connection has been established successfully.");
+//     } catch (error) {
+//         console.error("Unable to connect to the database:", error);
+//     }
+// })();
 
 // ; (async () => {
 //     try {
@@ -170,22 +169,136 @@ const Comment = sequelize.define(
 // })();
 
 // 3 Разработать функции для
+
 //     a) получения списка из таблицы(findAll)
+// ; (async () => {
+//     try {
+//         await User.sync({
+//             alter: true,
+//             force: false
+//         });
+//         const users = await User.findAll();
+//            if (users === null) {
+//             console.log("Not found!");
+//         } else {
+//             console.log(users instanceof User);
+//             console.log(users);
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+
 //     b) получения элемента по идентификатору (findByPk)
+// ; (async () => {
+//     try {
+//         await User.sync({
+//             alter: true,
+//             force: false
+//         });
+//         const users = await User.findByPk(1);
+//         if (users === null) {
+//             console.log("Not found!");
+//         } else {
+//             console.log(users instanceof User);
+//             console.log(users);
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+
 //     c) получения списка элементов с условием (findAll с where)
+// ;(async () => {
+//     try {
+//         await User.sync({
+//             alter: true,
+//             force: false,
+//         });
+//         const users = await User.findAll({
+//             where: {
+//                 email: "peter@yandex.ru",
+//             },
+//         });
+//                 if (users === null) {
+//                     console.log("Not found!");
+//                 } else {
+//                     console.log(users instanceof User);
+//                     console.log(users);
+//                 }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+
 //     d) добавления элемента
+// ; (async () => {
+//     try {
+//         await User.sync({
+//             alter: true,
+//             force: false,
+//         });
+//         const users = await User.create({
+//             first_name: 'Alex',
+//             last_name: 'More',
+//             email: 'alex@mail.com',
+//             password: '1234567'
+//         });
+//         if (users === null) {
+//             console.log("Not found!");
+//         } else {
+//             console.log(users instanceof User);
+//             console.log(users);
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+
 //     e) удаления элемента
+// ; (async () => {
+//     try {
+//         await Post.sync({
+//             alter: true,
+//             force: false,
+//         });
+//         const posts = await Post.destroy({
+//             where: {
+//                 title: {
+//                     [Op.like]: '%ell%'
+//                 }
+//             }
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+
 //     f) редактирования элемен
+// ; (async () => {
+//     try {
+//         await Post.sync({
+//             alter: true,
+//             force: false,
+//         });
+//         await Post.update(
+//             { body: "Moscow is capital of Russian Federation" },
+//             {
+//                 where: {
+//                     [Op.and]: [
+//                         {
+//                             title: "Столица",
+//                         },
+//                         {
+//                             author_id: 1,
+//                         },
+//                     ],
+//                 },
+//             }
+//         );
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
 
-; (async () => {
-    try {
-        await User.sync({
-            alter: true,
-            force: false
-        });
-
-        
-    } catch (error) {
-        console.error(error);
-    }
-})();
+// 4 (усложненное) Установить связи между моделями. Для этого можно воспользоваться документацией Sequelize (методы hasOne, hasMany, belongsTo, belongsToMany)
